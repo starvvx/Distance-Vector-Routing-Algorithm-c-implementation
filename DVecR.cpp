@@ -14,6 +14,7 @@ int main() {
   router routers[20];
   for(int i = 0;i<20;i++) {
     routers[i].distance[i] = 0;
+    routers[i].from[i] = i;
   }
   int number_of_routers;
   cout<<"Enter the number of routers: ";
@@ -30,8 +31,8 @@ int main() {
     if(u != -1) {
       routers[u].distance[v] = w;
       routers[v].distance[u] = w;
-      routers[u].from[v] = v+1;
-      routers[v].from[u] = u+1;
+      routers[u].from[v] = v;
+      routers[v].from[u] = u;
     }
   }
   for(int i = 1;i<=number_of_routers;i++) {
@@ -56,11 +57,10 @@ int main() {
   } while(count != 0);
 
   for(int i = 1;i<=number_of_routers;i++) {
-    cout<<endl<<"For router "<<i+1<<endl;
+    cout<<endl<<"For router "<<i<<endl;
     for(int j = 1;j<=number_of_routers;j++) {
-      cout<<j+1<<"th Node via "<<routers[i].from[j]+1<<" with cost "<<routers[i].distance[j]<<endl;
+      cout<<j<<"th Node via "<<routers[i].from[j]<<" with cost "<<routers[i].distance[j]<<endl;
     }
   }
   return 0;
 }
-
